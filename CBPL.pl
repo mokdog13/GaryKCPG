@@ -1,3 +1,4 @@
+% Gary K csce 11/09/18
 % Legal jumps along a line.
 linjmp([x, x, o | T], [o, o, x | T]).
 linjmp([o, x, x | T], [x, o, o | T]).
