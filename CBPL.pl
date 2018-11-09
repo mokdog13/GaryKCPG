@@ -3,10 +3,8 @@
 iq_puzzle :-
 	iq_puzzle(Moves),
 	display(Moves).
- 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% compute solution
-%
+	
+
 iq_puzzle(Moves) :-
 	play([1], [2,3,4,5,6,7,8,9,10,11,12,13,14,15], [], Moves).
  
@@ -21,9 +19,7 @@ play(Free, Occupied, Lst, Moves) :-
 	play([S, O | F1], [E | Oc2], [move(S,O,E) | Lst], Moves).
  
  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% allowed moves
-%
+
 move(S,2,E) :-
 	member([S,E], [[1,4], [4,1]]).
 move(S,3,E) :-
@@ -62,15 +58,13 @@ move(S,14,E):-
 	member([S,E], [[15,13], [13,15]]).
  
  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% display soluce
-%
+
 display(Sol) :-
 	display(Sol, [1]).
  
 display([], Free) :-
 	numlist(1,15, Lst),
-	maplist(\X^I^(member(X, Free) -> I = 0; I = 1),
+	maplist(\X^I^(member(X, Free) -> I = .; I = x),
 		Lst,
 		[I1,I2,I3,I4,I5,I6,I7,I8,I9,I10,I11,I12,I13,I14,I15]),
 	format('    ~w        ~n', [I1]),
@@ -83,7 +77,7 @@ display([], Free) :-
  
 display([move(Start, Middle, End) | Tail], Free) :-
 	numlist(1,15, Lst),
-	maplist(\X^I^(member(X, Free) -> I = 0; I = 1),
+	maplist(\X^I^(member(X, Free) -> I = .; I = x),
 		Lst,
 		[I1,I2,I3,I4,I5,I6,I7,I8,I9,I10,I11,I12,I13,I14,I15]),
 	format('    ~w        ~n', [I1]),
